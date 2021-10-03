@@ -24,14 +24,18 @@ app.use(express.urlencoded({
 app.post('/submit', async (req: Request<never, never, IRequestSubmissionEntity>, res: Response) => {
   try {
     const request = req.body;
-    console.log(request);
+    const isValid = await RequestSubmissionService.schema.isValid(request);
+    if (!isValid) {
+      throw Error('Invalid request details');
+    }
+
     const submittedRequest = await RequestSubmissionService.addNewRequestSubmission(request);
 
     res.status(200);
     res.json(submittedRequest);
   } catch(e: any) {
     res.status(400);
-    res.render('error', { error: e.message });
+    res.json({ error: e.message });
   }
 });
 

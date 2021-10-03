@@ -1,7 +1,8 @@
 import { v4 } from 'uuid';
 import docClient from '../..';
-import { IRequestSubmissionEntity, RequestStatus } from "../../entities/RequestSubmissionEntity";
+import { CASES, IRequestSubmissionEntity, RequestStatus } from "../../entities/RequestSubmissionEntity";
 import { DateTime } from 'luxon';
+import * as Yup from 'yup';
 
 class RequestSubmissionService {
     private static tableName = 'HandleMyCaseDynamoTables-requestSubmissions307F0A30-1IC1PJSMU2YGA';
@@ -60,6 +61,22 @@ class RequestSubmissionService {
 
         return results.Items as IRequestSubmissionEntity[]
     }
+
+    public static schema = Yup.object().shape({
+        name: Yup.string()
+            .max(60, '')
+            .required('This field is required'),
+        email: Yup.string()
+            .email('Invalid email address')
+            .required('This field is required'),
+        phoneNumber: Yup.string()
+            .matches(new RegExp('^[0-9]*$'), 'Phone number should be only numbers')
+            .min(10, 'Phone number should be 10 digits')
+            .max(10, 'Phone number should be 10 digits')
+            .required('Phone number is a required field'),
+        topic: Yup.mixed<CASES>().oneOf(Object.values(CASES), 'Invalid topic selected from dropdown'),
+        case: Yup.string().required('This field is required'),
+    });
 }
 
 export default RequestSubmissionService;
