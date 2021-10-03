@@ -1,7 +1,6 @@
 import { v4 } from 'uuid';
 import docClient from '../..';
-import { IRequestSubmissionEntity } from "../../entities/RequestSubmissionEntity";
-import RequestStatus from '../../enums/RequestStatus';
+import { IRequestSubmissionEntity, RequestStatus } from "../../entities/RequestSubmissionEntity";
 import { DateTime } from 'luxon';
 
 class RequestSubmissionService {
@@ -22,7 +21,8 @@ class RequestSubmissionService {
                 'case': newRequestSubmission.case,
                 'status': RequestStatus.OPEN,
                 'createdDate': createdDate,
-                'createdate#topic#accountId#userId': `${createdDate}#${newRequestSubmission.case}#undefined#undefined`
+                'createdate#topic#accountId#userId': `${createdDate}#${newRequestSubmission.topic}#undefined#undefined`,
+                'topic': newRequestSubmission.topic,
             }
         }).promise();
 

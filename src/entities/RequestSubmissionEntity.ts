@@ -1,5 +1,8 @@
-import RequestStatus from "../enums/RequestStatus";
-
+export enum RequestStatus {
+    OPEN = 'OPEN',
+    CLOSED = 'CLOSED',
+    HANDLED = 'HANDLED',
+}
 export interface IRequestSubmissionEntity {
     id: string,
     name: string,
@@ -8,4 +11,5 @@ export interface IRequestSubmissionEntity {
     case: string,
     status: RequestStatus,
     createdDate: string,
+    topic: string,
 }
