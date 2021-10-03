@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import { createServer } from 'http';
 import 'reflect-metadata';
 import { IRequestSubmissionEntity } from './entities/RequestSubmissionEntity';
+import sendEmail from './services/email';
 import RequestSubmissionService from './services/request-submission';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -31,6 +32,7 @@ app.post('/submit', async (req: Request<never, never, IRequestSubmissionEntity>,
 
     const submittedRequest = await RequestSubmissionService.addNewRequestSubmission(request);
 
+    await sendEmail(request.email, request.name);
     res.status(200);
     res.json(submittedRequest);
   } catch(e: any) {
