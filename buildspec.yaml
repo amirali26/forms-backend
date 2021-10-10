@@ -6,7 +6,7 @@ phases:
       - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 460234074473.dkr.ecr.eu-west-1.amazonaws.com
   build:
     commands:
-      - build docker image
+      - echo build docker image
       - docker build -t handlemycaseformcontainerisation-formsbackend7411eee4-5wli0avhsclo .
       - docker tag handlemycaseformcontainerisation-formsbackend7411eee4-5wli0avhsclo:latest 460234074473.dkr.ecr.eu-west-1.amazonaws.com/handlemycaseformcontainerisation-formsbackend7411eee4-5wli0avhsclo:latest
   post_build:
