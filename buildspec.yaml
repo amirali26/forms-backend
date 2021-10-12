@@ -7,9 +7,9 @@ phases:
   build:
     commands:
       - echo build docker image
-      - docker build -t handlemycaseformcontainerisation-formsbackend7411eee4-wzng2t5iaqas .
-      - docker tag handlemycaseformcontainerisation-formsbackend7411eee4-wzng2t5iaqas:latest 460234074473.dkr.ecr.eu-west-1.amazonaws.com/handlemycaseformcontainerisation-formsbackend7411eee4-wzng2t5iaqas:latest
+      - docker build -t handlemycaseformcontainerisation-formsbackend7411eee4-gnflvfawu0ek .
+      - docker tag handlemycaseformcontainerisation-formsbackend7411eee4-gnflvfawu0ek:latest 460234074473.dkr.ecr.eu-west-1.amazonaws.com/handlemycaseformcontainerisation-formsbackend7411eee4-gnflvfawu0ek:latest
   post_build:
     commands:
       - echo Push docker to ecr registry
-      - docker push 460234074473.dkr.ecr.eu-west-1.amazonaws.com/handlemycaseformcontainerisation-formsbackend7411eee4-wzng2t5iaqas:latest
+      - docker push 460234074473.dkr.ecr.eu-west-1.amazonaws.com/handlemycaseformcontainerisation-formsbackend7411eee4-gnflvfawu0ek:latest
