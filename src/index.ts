@@ -21,6 +21,15 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+app.get('/', (req, res: Response) => {
+  try {
+    res.status(200);
+    res.json('ok');
+  } catch(e: any) {
+    res.status(400);
+    res.json({ error: e.message });
+  }
+});
 
 app.post('/submit', async (req: Request<never, never, IRequestSubmissionEntity>, res: Response) => {
   try {
