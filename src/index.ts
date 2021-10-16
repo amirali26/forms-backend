@@ -24,7 +24,7 @@ app.use(express.urlencoded({
 app.get('/', (req, res: Response) => {
   try {
     res.status(200);
-    res.json('ok');
+    res.json('okq');
   } catch(e: any) {
     res.status(400);
     res.json({ error: e.message });
