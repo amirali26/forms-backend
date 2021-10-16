@@ -9,7 +9,7 @@ import RequestSubmissionService from './services/request-submission';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cors = require('cors');
 
-AWS.config.credentials = new AWS.SharedIniFileCredentials();
+AWS.config.credentials = new AWS.ECSCredentials();
 const docClient = new AWS.DynamoDB.DocumentClient({ region: 'eu-west-1' });
 
 const app = express();
